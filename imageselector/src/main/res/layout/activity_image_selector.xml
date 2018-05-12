@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/image_selector_fl_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/headColor"
+        android:paddingLeft="5dp"
+        android:paddingRight="15dp">
+
+        <ImageView
+            android:id="@+id/image_selector_iv_left_icon"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/image_selector_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:minWidth="160dp"
+            android:text="图片"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/image_selector_iv_right_icon"
+            android:layout_width="64dp"
+            android:layout_height="36dp"
+            android:layout_gravity="right|center_vertical"
+            android:background="@drawable/bg_image_selector_complete_btn"
+            android:clickable="false"
+            android:text="完成"
+            android:textColor="@android:color/white" />
+
+    </FrameLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/image_selector_recycler_view_images"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="50dp"
+        android:scrollbars="none" />
+
+    <FrameLayout
+        android:id="@+id/image_selector_fl_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="50dp"
+        android:background="@android:color/white"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/ic_empty_data" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="72dp"
+            android:text="使浑身解数，也没找到到图片"
+            android:textColor="#e6e6e6" />
+
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/image_selector_fl_bottom_menu"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/headColor"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/image_selector_tv_folder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
+            android:drawableRight="@drawable/trilateral"
+            android:gravity="center_vertical"
+            android:minWidth="85dp"
+            android:text="所有图片"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/image_selector_tv_browse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:padding="5dp"
+            android:text="预览"
+            android:textColor="@drawable/image_browse_font"
+            android:textSize="14sp" />
+
+
+    </FrameLayout>
+
+
+</android.support.constraint.ConstraintLayout>

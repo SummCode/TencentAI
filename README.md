@@ -1,1 +1,2 @@
 # CertificateRecognition
+Android证件识别是基于腾讯AI的API封装.
