@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="headColor">#393A3F</color>
+    <color name="diaphaneityColor">#66000000</color>
+    <color name="btnPressColor">#1AAD19</color>
+    <color name="btnNormalColor">#2D6830</color>
+    <color name="fontNormalColor">#747578</color>
+    <color name="white">#ffffff</color>
+</resources>
