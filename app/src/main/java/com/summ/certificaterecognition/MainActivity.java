@@ -225,7 +225,13 @@ public class MainActivity extends AppCompatActivity implements ITencentAiView {
 
     @Override
     public void parseFailedResult(ResponseResult result) {
-        tvShowResult.setText(result.toString());
+
+        if(result.getCode()<0){
+            tvShowResult.setText("系统繁忙");
+        }else {
+            tvShowResult.setText("识别失败，请重试");
+        }
+
     }
 
     @Override
