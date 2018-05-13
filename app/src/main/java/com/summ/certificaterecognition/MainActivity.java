@@ -147,11 +147,12 @@ public class MainActivity extends AppCompatActivity implements ITencentAiView {
         btnTakeCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                tvShowResult.setText("");
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 mFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/test/" + System.currentTimeMillis() + ".jpg");
                 mFile.getParentFile().mkdirs();
 
-                Uri uri = FileUtils.getUriForFile(v.getContext(), mFile,getPackageName() + ".fileprovider");
+                Uri uri = FileUtils.getUriForFile(v.getContext(), mFile, getPackageName() + ".fileprovider");
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
@@ -162,6 +163,7 @@ public class MainActivity extends AppCompatActivity implements ITencentAiView {
         btnTakePicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                tvShowResult.setText("");
                 ImageSelectorIntentData.setIntentData(MainActivity.this, new ImageSelectorIntentData(1, 0, null));
             }
         });
@@ -173,11 +175,12 @@ public class MainActivity extends AppCompatActivity implements ITencentAiView {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        tvShowResult.setText("识别…");
 
         if (resultCode != RESULT_OK) {
             return;
         }
+
+        tvShowResult.setText("识别…");
 
         File file = null;
         if (requestCode == REQUEST_CODE_CAMERA) {
@@ -226,9 +229,9 @@ public class MainActivity extends AppCompatActivity implements ITencentAiView {
     @Override
     public void parseFailedResult(ResponseResult result) {
 
-        if(result.getCode()<0){
+        if (result.getCode() < 0) {
             tvShowResult.setText("系统繁忙");
-        }else {
+        } else {
             tvShowResult.setText("识别失败，请重试");
         }
 
