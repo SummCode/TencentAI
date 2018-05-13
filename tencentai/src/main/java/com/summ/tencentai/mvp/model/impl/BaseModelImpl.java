@@ -39,6 +39,7 @@ public abstract class BaseModelImpl implements IBaseModel {
             case post:
                 post(url, params, callback);
                 break;
+            default:
         }
     }
 

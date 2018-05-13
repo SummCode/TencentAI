@@ -35,4 +35,5 @@ public class ModelImpl extends BaseModelImpl {
         RequestParams requestParams = getRequestParams(params);
         httpsRequest(post, url, requestParams, callback);
     }
+
 }

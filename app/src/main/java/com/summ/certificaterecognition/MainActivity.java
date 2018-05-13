@@ -185,6 +185,7 @@ public class MainActivity extends AppCompatActivity implements ITencentAiView {
         File file = null;
         if (requestCode == REQUEST_CODE_CAMERA) {
             file = ImageCompress.getInstance().compress(mFile.getAbsolutePath());
+            mFile.delete();
         } else {
             ImageSelectorIntentData imageSelector = ImageSelectorIntentData.getIntentData(data);
 
@@ -261,6 +262,7 @@ public class MainActivity extends AppCompatActivity implements ITencentAiView {
     public void parseCreditCard(List<TencentAiCreditCardResult> list) {
         tvShowResult.setText(getString(list));
     }
+
 
     private String getString(List<? extends TencentAiPrint> list) {
         StringBuilder stringBuilder = new StringBuilder();

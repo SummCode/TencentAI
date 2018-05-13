@@ -41,7 +41,11 @@ public class TencentAiApi {
      */
     public final static String TENCENT_AI_OCR_BIZ_LICENSE = "https://api.ai.qq.com/fcgi-bin/ocr/ocr_bizlicenseocr";
 
-
+    /**
+     * 银行卡OCR识别接口
+     * 1. 接口描述
+     * 根据用户上传的银行卡图像，返回识别出的银行卡字段信息。
+     */
     public final static String TENCENT_AI_OCR_CREDIT_CARD = "https://api.ai.qq.com/fcgi-bin/ocr/ocr_creditcardocr";
 
 

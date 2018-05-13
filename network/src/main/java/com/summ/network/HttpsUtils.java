@@ -1,7 +1,6 @@
 package com.summ.network;
 
 
-
 import com.summ.tool.EmptyUtils;
 import com.summ.tool.LogUtils;
 import com.summ.network.request.RequestConfig;
@@ -20,8 +19,8 @@ import okhttp3.RequestBody;
  * <p>
  * Http请求，参数是form-data格式
  * <p>
- * @author:summ.Chen.
- * Create：2016/8/30.
+ *
+ * @author:summ.Chen. Create：2016/8/30.
  * Email： summ_summ@163.com
  * Version：1.0.0
  */
@@ -222,6 +221,7 @@ public class HttpsUtils {
             case DELETE:
                 requestBody = formBodyBuilder.build();
                 break;
+            default:
         }
 
         Request.Builder builder = requestConfig.getRequestBuilder().url(url);
