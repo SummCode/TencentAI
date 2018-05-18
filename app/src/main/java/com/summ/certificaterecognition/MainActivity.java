@@ -34,6 +34,7 @@ import com.summ.tencentai.mvp.view.ITencentAiView;
 import com.summ.tencentai.record.Recorder;
 import com.summ.tool.Base64Utils;
 import com.summ.tool.FileUtils;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import java.io.File;
 import java.util.List;
@@ -175,7 +176,6 @@ public class MainActivity extends AppCompatActivity implements ITencentAiView {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (resultCode != RESULT_OK) {
             return;
         }
