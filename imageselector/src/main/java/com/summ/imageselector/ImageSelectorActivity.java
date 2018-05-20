@@ -106,6 +106,8 @@ public class ImageSelectorActivity extends BaseImageActivity implements ScanLoca
 
     private void setListener() {
 
+
+
         ivLefticon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -245,7 +247,7 @@ public class ImageSelectorActivity extends BaseImageActivity implements ScanLoca
                 mImages.addAll(imageData);
             }
 
-            mImageSelectorAdapter = new ImageSelectorAdapter(mImages, this);
+            mImageSelectorAdapter = new ImageSelectorAdapter(rvImages,mImages, this);
             rvImages.setAdapter(mImageSelectorAdapter);
 
             if (mImageFromType == IMAGE_FROM_PHONE) {
