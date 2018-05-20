@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,10 +89,13 @@ public class SelectFolderView extends PopupWindow {
         setWidth(width);
         setHeight(height);
 //        backgroudAlpha(0.2f);
-        setBackgroundDrawable(new ColorDrawable(mContext.getResources().getColor(R.color.diaphaneityColor))); // 设置背景颜色
+        // 设置背景颜色
+        setBackgroundDrawable(new ColorDrawable());
         setTouchable(true);
-        setFocusable(true);// 设置可以获取焦点
-        setOutsideTouchable(true);// 设置可以触摸弹出框以外的区域
+        // 设置可以获取焦点
+        setFocusable(true);
+        // 设置可以触摸弹出框以外的区域
+        setOutsideTouchable(true);
         setPopupWindowStyle();
         mRootLayout = loadContentView(putContentView());
         initView(mRootLayout);
@@ -106,7 +110,9 @@ public class SelectFolderView extends PopupWindow {
 //        });
     }
 
-    //设置屏幕背景透明度
+    /**
+     * 设置屏幕背景透明度
+     */
     private void backgroudAlpha(float alpha) {
         WindowManager.LayoutParams params = mContext.getWindow().getAttributes();
         params.alpha = alpha;
@@ -159,10 +165,14 @@ public class SelectFolderView extends PopupWindow {
      * @param height 高度
      */
     private void setViewSize(View view, int width, int height) {
-        ViewGroup.LayoutParams linearParams = view.getLayoutParams(); //取控件View当前的布局参数
-        linearParams.width = width;// 控件的宽强制设成 width
-        linearParams.height = height;// 控件的高强制设成 height
-        view.setLayoutParams(linearParams); //使设置好的布局参数应用到控件
+        //取控件View当前的布局参数
+        ViewGroup.LayoutParams linearParams = view.getLayoutParams();
+        // 控件的宽强制设成 width
+        linearParams.width = width;
+        // 控件的高强制设成 height
+        linearParams.height = height;
+        //使设置好的布局参数应用到控件
+        view.setLayoutParams(linearParams);
     }
 
 
@@ -188,6 +198,7 @@ public class SelectFolderView extends PopupWindow {
     }
 
     public void show(View view) {
+//        this.showAtLocation(view, Gravity.TOP,0,dp2px(50)+getStatusHeight(mContext));
         this.showAsDropDown(view, 0, 0);
     }
 

@@ -35,14 +35,35 @@ public class ImageSelectorAdapter extends RecyclerView.Adapter<ImageSelectorAdap
 
     private List<ImageEntity> mImageEntities;
     private ImageSelectorListener mImageSelectListener;
+    private RecyclerView rvRecycler;
+    private boolean isScroll;
 
-    public ImageSelectorAdapter(List<ImageEntity> list) {
-        this(list, null);
+    public ImageSelectorAdapter(RecyclerView recyclerView, List<ImageEntity> list) {
+        this(recyclerView, list, null);
     }
 
-    public ImageSelectorAdapter(List<ImageEntity> entities, ImageSelectorListener listener) {
+    public ImageSelectorAdapter(RecyclerView recyclerView, List<ImageEntity> entities, ImageSelectorListener listener) {
+        this.rvRecycler = recyclerView;
         this.mImageEntities = entities;
         this.mImageSelectListener = listener;
+        init();
+    }
+
+    private void init() {
+        rvRecycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                switch (newState) {
+                    case 0:
+                        isScroll = false;
+                        break;
+                    default:
+                        isScroll = true;
+                }
+            }
+        });
     }
 
     public ImageSelectorListener getImageSelectListener() {
@@ -63,6 +84,7 @@ public class ImageSelectorAdapter extends RecyclerView.Adapter<ImageSelectorAdap
     @Override
     public void onBindViewHolder(ImageSelectorHolder holder, int position) {
         ImageEntity imageEntity = mImageEntities.get(position);
+
         holder.setChecked(imageEntity.isChecked());
         holder.loadImage(imageEntity.getPath());
         holder.setClickListener(position);
@@ -110,8 +132,7 @@ public class ImageSelectorAdapter extends RecyclerView.Adapter<ImageSelectorAdap
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                    if (mImageSelectListener != null) {
+                    if (mImageSelectListener != null && !isScroll) {
                         mImageSelectListener.onImageSelect(imageEntity, buttonView, isChecked);
                     }
                 }
