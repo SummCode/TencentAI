@@ -137,7 +137,7 @@ public class ImageSelectorActivity extends BaseImageActivity implements ScanLoca
                 } else {
                     SelectFolderAdapter adapter = new SelectFolderAdapter(mScanLocalImage.getImageFloders(), ImageSelectorActivity.this);
                     mSelectFolder = new SelectFolderView(ImageSelectorActivity.this, adapter);
-                    mSelectFolder.show(flTitlebar);
+                    mSelectFolder.show(flBottomMenu);
                 }
 
             }
