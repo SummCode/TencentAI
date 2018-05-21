@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
@@ -18,9 +17,6 @@ import android.widget.PopupWindow;
 
 import com.summ.imageselector.R;
 import com.summ.imageselector.adapter.SelectFolderAdapter;
-import com.summ.imageselector.entity.ImageFolderEntity;
-
-import java.util.List;
 
 public class SelectFolderView extends PopupWindow {
 
@@ -28,7 +24,8 @@ public class SelectFolderView extends PopupWindow {
     public final static int WRAP_CONTENT = WindowManager.LayoutParams.WRAP_CONTENT;
 
     private Activity mContext;
-    private View mRootLayout;
+    private View vBackground;
+    private View vRootLayout;
     private RecyclerView rvFolder;
     private SelectFolderAdapter mAdapter;
 
@@ -53,7 +50,8 @@ public class SelectFolderView extends PopupWindow {
      * 设置popup window样式
      */
     public void setPopupWindowStyle() {
-
+        setAnimationStyle(0);
+//        setAnimationStyle(R.style.anim_bottom_pop_up);
     }
 
     /**
@@ -63,8 +61,8 @@ public class SelectFolderView extends PopupWindow {
      */
     public void initView(View view) {
         rvFolder = view.findViewById(R.id.recycler_view_selector_folder);
-        View bg = view.findViewById(R.id.view_selector_folder_top_bg);
-        setViewSize(bg, MATCH_PARENT, getScreenHeight(mContext) - dp2px(100) - getStatusHeight(mContext));
+        vBackground = view.findViewById(R.id.view_selector_folder_top_bg);
+        setViewSize(vBackground, MATCH_PARENT, getScreenHeight(mContext) - dp2px(100) - getStatusHeight(mContext));
         LinearLayoutManager linear = new LinearLayoutManager(mContext);
         rvFolder.setLayoutManager(linear);
         rvFolder.addItemDecoration(new RecyclerDivider(view.getContext(), RecyclerDivider.VERTICAL, 1, R.color.fontNormalColor));
@@ -73,10 +71,17 @@ public class SelectFolderView extends PopupWindow {
 
         setViewSize(rvFolder, MATCH_PARENT, getScreenHeight(mContext) / 3 * 2);
 
-        bg.setOnClickListener(new View.OnClickListener() {
+        vBackground.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();
+            }
+        });
+
+        setOnDismissListener(new OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                vBackground.setBackgroundColor(Color.argb(0,0,0,0));
             }
         });
 
@@ -97,17 +102,11 @@ public class SelectFolderView extends PopupWindow {
         // 设置可以触摸弹出框以外的区域
         setOutsideTouchable(true);
         setPopupWindowStyle();
-        mRootLayout = loadContentView(putContentView());
-        initView(mRootLayout);
-        setContentView(mRootLayout);
+        vRootLayout = loadContentView(putContentView());
+        initView(vRootLayout);
+        setContentView(vRootLayout);
 
 
-//        setOnDismissListener(new OnDismissListener() {
-//            @Override
-//            public void onDismiss() {
-//                backgroudAlpha(1f);
-//            }
-//        });
     }
 
     /**
@@ -198,9 +197,9 @@ public class SelectFolderView extends PopupWindow {
     }
 
     public void show(View view) {
-//        this.showAtLocation(view, Gravity.TOP,0,dp2px(50)+getStatusHeight(mContext));
-        this.showAsDropDown(view, 0, 0);
+        vBackground.setBackgroundColor(view.getResources().getColor(R.color.diaphaneityColor));
+        this.showAtLocation(view, Gravity.TOP,0,dp2px(50)+getStatusHeight(mContext));
+//        this.showAsDropDown(view, 0, 0);
     }
-
 
 }
